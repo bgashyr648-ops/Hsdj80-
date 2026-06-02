@@ -1,4 +1,4 @@
-const { cmd } = require('../lib'); // Aapke bot ke structure ke mutabiq lib ka path
+const { cmd } = require('../command'); // Aapke bot ke structure ke mutabiq lib ka path
 
 cmd({
     pattern: "hi", // Main command
