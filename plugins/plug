@@ -1,0 +1,49 @@
+const { cmd } = require('../lib'); // Aapke bot ke structure ke mutabiq lib ka path
+
+cmd({
+    pattern: "hi", // Main command
+    alias: ["hello", "hay", "hey"], // In words par bhi bot khud hi reply karega
+    desc: "Sends impressive lines with Love MD and Durg branding when someone says hi/hello.",
+    category: "fun",
+    filename: __filename
+},
+async (conn, mek, m, { from, reply }) => {
+    try {
+        // Zabardast Roman Urdu messages ki list bina ginti ke
+        const impressiveLines = [
+            "Aapki muskaan ka asar seedha dil par hota hai, zara sambhal kar muskuraya kijiye. ✨",
+            "Baatein to sab karte hain, par aapki baaton mein jo sukoon hai wo kahin aur nahi. 🌸",
+            "Kuch log dil mein is tarah utar jaate hain, ki phir har dua mein bas wohi yaad aate hain. ❤️",
+            "Aapki saadgi hi aapki sabse badi khoobsurati hai. 💫",
+            "Khuda ne fursat mein banaya hoga aapko, har andaaz aapka lajawab hai. 😍",
+            "Dil ki bas eh hi khwahish hai, ki aapki hansi kabhi kam na ho. 🌹",
+            "Aap wo khoobsurat ehasas ho, jo dil ko choo kar guzar jata hai. ✨",
+            "Tareef to chehre ki hoti hai, par hamein to aapki saadgi se pyar hai. 🦋",
+            "Aapki aawaz mein jo thehrav hai, wo dil ko bahut sukoon deta hai. 🎶",
+            "Kuch log itne pyaare hote hain ki unhe sirf dekhne se hi din ban jata hai. 💕",
+            "Aapki aankhein bahut kuch keh jaati hain, jaise koi khoobsurat kitab ho. 📖",
+            "Duniya mein khoobsurat cheezein bahut hain, par aapki muskaan se badhkar kuch nahi. 😊",
+            "Aap wo aadat ho jise mein kabhi chhodna nahi chahunga. 💞",
+            "Har roz aapko dekhna aur aapki baatein sunna, dil ka pasandida kaam ban gaya hai. 🌸",
+            "Aapki maujoodgi hi kisi bhi mehfil mein jaan daal deti hai. ✨",
+            "Aap se baat karke aisa lagta hai jaise koi bhatki hui dua qubool ho gayi ho. ❤️",
+            "Kuch rishte munafe ke liye nahi, bas sukoon ke liye banaye jaate hain. 💫",
+            "Aapka andaaz-e-bayan bhi kamaal hai, sunne wala bas sunta hi reh jaye. 🗣️✨",
+            "Zindagi khoobsurat hai, par aap jaisa koi dost ya sathi ho to aur bhi haseen ho jaati hai. 🌹",
+            "Aapki tareef mein kya kahein, aap khud apni misaal hain. 🌟"
+        ];
+
+        // Messages mein se randomly ek select karne ke liye
+        const randomIndex = Math.floor(Math.random() * impressiveLines.length);
+        
+        // Har message ke sath Love MD aur Durg dono naam jodne ke liye
+        const finalMessage = `${impressiveLines[randomIndex]}\n\n*Love MD powered by Durg*`;
+
+        // User ko reply bhejne ke liye
+        await reply(finalMessage);
+
+    } catch (e) {
+        console.log(e);
+        reply("Oh! Command run karne mein koi dikkat aa rahi hai.");
+    }
+});
